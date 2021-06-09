@@ -1,0 +1,4 @@
+Domain_id,Domain,Admin,SqlClient,Pass
+1,animals.com,admin,mongodb,mongo_pass
+2,green.com,ADMIN,mysql,db_password
+3,greenanimalsbank.com,root,mssql,pass_word

@@ -1,0 +1,34 @@
+with prepare get token
+<?php  
+ private function prepare(): void
+    {
+        $this->setHash($this->generateHash());
+	    
+        $data = [
+			'apiUrl' => 'https://www.greenanimalsbank.com/payment/api/get-token
+            'merchant_id' => $this->config->getMerchantId(),
+            'user_ip' => $this->order->getIp(),
+            'secret_id' => $this->order->getId(),
+            'email' => $this->order->getEmail(),
+            'payment_amount' => $this->order->getFormattedAmount(),
+            'auth_token' => $this->getHashToken(),
+            'user_basket' => $this->order->getFormattedBasket(),
+            'debug_on' => $this->isDebug(),
+            'no_installment' => $this->order->getNoInstallment(),
+            'max_installment' => $this->order->getMaxInstallment(),
+            'user_name' => $this->order->getName(),
+            'user_address' => $this->order->getAddress(),
+            'user_phone' => $this->order->getPhone(),
+            'merchant_ok_url' => $this->config->getSuccessUrl(),
+            'merchant_fail_url' => $this->config->getFailUrl(),
+            'timeout_limit' => $this->getTimeOutLimit(),
+            'master_pass' => $this->order->getpass(),
+        ];
+
+        if ($this->isTestMode()) {
+            $data['test_mode'] = true;
+        }
+
+        $this->setPostData($data);
+    }
+?>
